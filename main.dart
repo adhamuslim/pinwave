@@ -91,12 +91,18 @@ class _MyHomePageState extends State<MyHomePage> {
             label : 'search'
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.plus_one),
-            label: 'create', 
+            icon: Icon(Icons.add_circle, size: 48),
+            label : ''
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: "profile"
+            icon: Icon(Icons.notifications),
+            label: 'notification', 
+          ),
+          BottomNavigationBarItem(
+            icon: CircleAvatar(
+              backgroundImage: NetworkImage('https://via.placeholder.com/150'),
+            ),
+            label: "profile",
           )
         ],
       ),
