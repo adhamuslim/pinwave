@@ -4,11 +4,11 @@ import 'beranda.dart';
 import 'search.dart';
 
 void main() {
-  runApp(const Pinwave());
+  runApp(const homepage());
 }
 
-class Pinwave extends StatelessWidget {
-  const Pinwave ({Key? key}) : super(key: key); 
+class homepage extends StatelessWidget {
+  const homepage ({Key? key}) : super(key: key); 
 
   @override 
   Widget build(BuildContext context){
@@ -53,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Text('Go To Home page', style: TextStyle(fontSize: 30, color: Colors.blue)),
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(
-                    builder: (context) => const Pinwave()
+                    builder: (context) => const homepage()
                     ));
                 },
               )
@@ -71,8 +71,8 @@ class _MyHomePageState extends State<MyHomePage> {
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.white,
-        selectedItemColor: Color.fromARGB(0, 2, 18, 252),
-        unselectedItemColor: Color.fromARGB(0, 17, 119, 255),
+        selectedItemColor: Colors.lightBlue,
+        unselectedItemColor: Colors.blue,
         currentIndex: selected,
         onTap: (index) {
           setState(() {
