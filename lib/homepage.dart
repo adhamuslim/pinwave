@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'profile.dart';
 import 'beranda.dart';
 import 'search.dart';
+import 'profile.dart';
 
 void main() {
   runApp(const homepage());
@@ -17,7 +17,7 @@ class homepage extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'ABP MINGGU 11'),
+      home: MyHomePage(title: 'PinWave'),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -48,19 +48,8 @@ class _MyHomePageState extends State<MyHomePage> {
             });
           },
           children: [
-            Center(
-              child: InkWell(
-                child: Text('Go To Home page', style: TextStyle(fontSize: 30, color: Colors.blue)),
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) => const homepage()
-                    ));
-                },
-              )
-            ),
-            Center(
-              child: Text('search page', style: TextStyle(fontSize: 30)),
-            ),
+            Beranda(), // Ganti dengan BerandaPage()
+            SearchPage(), // Ganti dengan SearchPage()
             Center(
               child: Text('create page', style: TextStyle(fontSize: 30)),
             ),
