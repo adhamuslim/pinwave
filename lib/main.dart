@@ -1,102 +1,126 @@
 import 'package:flutter/material.dart';
-import 'beranda.dart';
-import 'search.dart';
-import 'profile.dart';
-
+import 'login.dart';
+import 'signup.dart';
 void main() {
-  runApp(const Pinwave());
+  runApp(MyApp());
 }
 
-class Pinwave extends StatelessWidget {
-  const Pinwave ({Key? key}) : super(key: key); 
-
-  @override 
-  Widget build(BuildContext context){
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'PinWave',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'PinWave'),
-      debugShowCheckedModeBanner: false,
+      home: SignInScreen(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget{
-  const MyHomePage({Key? key,  required this.title}) : super(key : key);
-
-  final String title;
-  @override 
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int selected = 0;
-  PageController pc = PageController(initialPage: 0);
-
-  @override 
+class SignInScreen extends StatelessWidget {
+  @override
   Widget build(BuildContext context) {
-    return Scaffold (
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: PageView(
-          controller: pc,
-          onPageChanged: (index) {
-            setState(() {
-              selected = index;
-            });
-          },
-          children: [
-            Beranda(), // Ganti dengan BerandaPage()
-            SearchPage(), // Ganti dengan SearchPage()
-            Center(
-              child: Text('create page', style: TextStyle(fontSize: 30)),
+    return Scaffold(
+      body: Container(
+        color: Colors.grey[300], // Background color of the entire screen
+        child: Center(
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.blue, // Light blue background color of the card
+              
             ),
-            HomePage(),
-          ],
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircleAvatar(
+                  radius: 50,
+                  backgroundColor: Colors.white,
+                  child: Icon(
+                    Icons.waves,
+                    color: Colors.blue,
+                    size: 50,
+                  ),
+                ),
+                SizedBox(height: 20),
+                Text(
+                  'Welcome To',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.indigo,
+                  ),
+                ),
+                Text(
+                  'PINWAVE',
+                  style: TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.blue,
+                  ),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  'You See What I See\n',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black54,
+                  ),
+                ),
+                SizedBox(height: 30),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => signup()),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.indigo,
+                        foregroundColor: Colors.white, // Button color
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            bottomLeft: Radius.circular(20),
+                          ),
+                        ),
+                        padding: EdgeInsets.symmetric(
+                          vertical: 15,
+                          horizontal: 30,
+                        ),
+                      ),
+                      child: Text('Sign Up'),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => LoginPage()),
+                        );// Sign In button action
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white, // Button color
+                        foregroundColor: (Colors.indigo), // Text color
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(20),
+                            bottomRight: Radius.circular(20),
+                          ),
+                        ),
+                        side: BorderSide(color: Colors.indigo),
+                        padding: EdgeInsets.symmetric(
+                          vertical: 15,
+                          horizontal: 30,
+                        ),
+                      ),
+                      child: Text('Sign In'),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.white,
-        selectedItemColor: Colors.lightBlue,
-        unselectedItemColor: Colors.blue,
-        currentIndex: selected,
-        onTap: (index) {
-          setState(() {
-            selected = index;
-          });
-          pc.animateToPage(
-            index,
-            duration: Duration(milliseconds: 200),
-            curve: Curves.linear,
-          );
-        },
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_filled),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label : 'search'
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.add_circle, size: 48),
-            label : ''
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
-            label: 'notification', 
-          ),
-          BottomNavigationBarItem(
-            icon: CircleAvatar(
-              backgroundImage: NetworkImage('https://via.placeholder.com/150'),
-            ),
-            label: "profile",
-          )
-        ],
       ),
     );
   }
