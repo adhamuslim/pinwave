@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'beranda.dart';
+import 'search.dart';
 import 'profile.dart';
+
 void main() {
   runApp(const Pinwave());
 }
@@ -14,7 +17,7 @@ class Pinwave extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'ABP MINGGU 11'),
+      home: MyHomePage(title: 'PinWave'),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -45,19 +48,8 @@ class _MyHomePageState extends State<MyHomePage> {
             });
           },
           children: [
-            Center(
-              child: InkWell(
-                child: Text('Go To Home page', style: TextStyle(fontSize: 30, color: Colors.blue)),
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) => const Pinwave()
-                    ));
-                },
-              )
-            ),
-            Center(
-              child: Text('search page', style: TextStyle(fontSize: 30)),
-            ),
+            Beranda(), // Ganti dengan BerandaPage()
+            SearchPage(), // Ganti dengan SearchPage()
             Center(
               child: Text('create page', style: TextStyle(fontSize: 30)),
             ),
@@ -68,8 +60,8 @@ class _MyHomePageState extends State<MyHomePage> {
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.white,
-        selectedItemColor: Color.fromARGB(0, 2, 18, 252),
-        unselectedItemColor: Color.fromARGB(0, 17, 119, 255),
+        selectedItemColor: Colors.lightBlue,
+        unselectedItemColor: Colors.blue,
         currentIndex: selected,
         onTap: (index) {
           setState(() {
