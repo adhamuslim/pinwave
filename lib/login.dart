@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'main.dart';
-import 'profile.dart';
-
+import 'signup.dart';
 void main() {
-  runApp(MyApp());
+  runApp(LoginPage());
 }
 
-class MyApp extends StatelessWidget {
+class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -38,8 +36,7 @@ class _SignInScreenState extends State<SignInScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.network(
-                    'https://via.placeholder.com/150', // Ganti dengan URL logo Anda
+                  Image.asset('assets/logo.jpeg', // Ganti dengan URL logo Anda
                     height: 100,
                   ),
                   SizedBox(height: 20),
@@ -118,7 +115,12 @@ class _SignInScreenState extends State<SignInScreen> {
                     children: [
                       Text("Don't have an account?"),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => signup()),
+                          );
+                        },
                         child: Text(
                           'Register',
                           style: TextStyle(color: Colors.blue),
