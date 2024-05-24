@@ -2,26 +2,39 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
+
+void main() {
+  runApp(CreatePin());
+}
+
+class CreatePin extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Create Pin',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: CreatePinPage(),
+    );
+  }
+}
+
 class CreatePinPage extends StatefulWidget {
   @override
   _CreatePinPageState createState() => _CreatePinPageState();
 }
 
 class _CreatePinPageState extends State<CreatePinPage> {
-  File? _image;
-  final picker = ImagePicker();
-  final TextEditingController _titleController = TextEditingController();
-  final TextEditingController _descriptionController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  XFile? _imageFile;
+  final ImagePicker _picker = ImagePicker();
 
-  Future getImage() async {
-    final pickedFile = await picker.getImage(source: ImageSource.gallery);
-
+  Future<void> _pickImage() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
     setState(() {
-      if (pickedFile != null) {
-        _image = File(pickedFile.path);
-      } else {
-        print('No image selected.');
-      }
+      _imageFile = pickedFile;
     });
   }
 
@@ -29,61 +42,121 @@ class _CreatePinPageState extends State<CreatePinPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Create Pin'),
+        backgroundColor: Colors.blue,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            // Handle back action
+          },
+        ),
+        title: Text('Create Pin', style: TextStyle(color: Colors.white)),
         actions: [
           IconButton(
-            icon: Icon(Icons.check),
+            icon: Icon(Icons.settings),
             onPressed: () {
-              // Implement your logic to save the pin here
-              // For example, save to database or upload to server
-              if (_image != null && _titleController.text.isNotEmpty) {
-                // Save pin logic
-                print('Pin Created');
-              } else {
-                // Show error
-                print('Please fill all fields');
-              }
+              // Handle settings action
             },
           ),
         ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: <Widget>[
-            GestureDetector(
-              onTap: getImage,
-              child: _image == null
-                  ? Container(
-                      height: 200,
-                      color: Colors.grey[300],
-                      child: Icon(Icons.add_a_photo, size: 50, color: Colors.grey[700]),
-                    )
-                  : Image.file(
-                      _image!,
-                      height: 200,
+        child: Form(
+          key: _formKey,
+          child: ListView(
+            children: [
+              GestureDetector(
+                onTap: _pickImage,
+                child: Container(
+                  height: 200,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: _imageFile == null
+                      ? Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.cloud_upload, size: 50, color: Colors.grey),
+                              SizedBox(height: 10),
+                              Text('Choose a file or drag and drop it here'),
+                              SizedBox(height: 10),
+                              Text('We recommend using high quality .jpg files less than 20MB or .mp4 files less than 200MB'),
+                            ],
+                          ),
+                        )
+                      : Image.file(File(_imageFile!.path)),
+                ),
+              ),
+              SizedBox(height: 20),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Title',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              SizedBox(height: 20),
+              TextFormField(
+                maxLines: 4,
+                decoration: InputDecoration(
+                  labelText: 'Description',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              SizedBox(height: 20),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Link',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              SizedBox(height: 20),
+              DropdownButtonFormField<String>(
+                decoration: InputDecoration(
+                  labelText: 'Album',
+                  border: OutlineInputBorder(),
+                ),
+                items: <String>['Album 1', 'Album 2', 'Album 3', 'Album 4']
+                    .map((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                onChanged: (String? newValue) {
+                  // Handle album selection
+                },
+              ),
+              SizedBox(height: 20),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Tags',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    // Handle publish action
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue, // Background color
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0),
                     ),
-            ),
-            SizedBox(height: 20),
-            TextField(
-              controller: _titleController,
-              decoration: InputDecoration(
-                labelText: 'Title',
-                border: OutlineInputBorder(),
+                    padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                  ),
+                child: 
+                Text('Publish', style: TextStyle(color: Colors.white)),
+                
               ),
-            ),
-            SizedBox(height: 20),
-            TextField(
-              controller: _descriptionController,
-              decoration: InputDecoration(
-                labelText: 'Description',
-                border: OutlineInputBorder(),
-              ),
-              maxLines: 4,
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
+     ),
     );
   }
 }
