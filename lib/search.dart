@@ -32,10 +32,12 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor : Colors.blue,
         title: TextField(
           controller: _controller,
           decoration: InputDecoration(
-            hintText: 'Cari ide',
+            hintText: 'Search your Idea',
+            icon: Icon(Icons.search),
             border: InputBorder.none,
           ),
           onSubmitted: (query) {
