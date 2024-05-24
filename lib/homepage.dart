@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'beranda.dart';
 import 'search.dart';
 import 'profile.dart';
+import 'createpin.dart';
 
 void main() {
   runApp(const homepage());
@@ -50,12 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             Beranda(), // Ganti dengan BerandaPage()
             SearchPage(), // Ganti dengan SearchPage()
-            Center(
-              child: Text('create page', style: TextStyle(fontSize: 30)),
-            ),
-            Center(
-              child: Text('notifikasi', style: TextStyle(fontSize: 30)),
-            ),
+            CreatePinPage(),
             HomePage(),
           ],
         ),
@@ -83,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
-            label : 'Search'
+            label : 'search'
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.add_circle, size: 48),
@@ -91,13 +87,13 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.notifications),
-            label: 'Notification', 
+            label: 'notification', 
           ),
           BottomNavigationBarItem(
             icon: CircleAvatar(
-              backgroundImage: AssetImage('assets/gambar.jpg'),
+              backgroundImage: NetworkImage('https://via.placeholder.com/150'),
             ),
-            label: "Profile",
+            label: "profile",
           )
         ],
       ),
