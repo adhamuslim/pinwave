@@ -52,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Beranda(), // Ganti dengan BerandaPage()
             SearchPage(), // Ganti dengan SearchPage()
             CreatePinPage(),
-            HomePage(),
+            ProfileScreen(),
           ],
         ),
       ),
