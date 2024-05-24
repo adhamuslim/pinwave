@@ -3,6 +3,7 @@ import 'beranda.dart';
 import 'search.dart';
 import 'profile.dart';
 import 'createpin.dart';
+import 'notification.dart';
 
 void main() {
   runApp(const homepage());
@@ -52,6 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Beranda(), // Ganti dengan BerandaPage()
             SearchPage(), // Ganti dengan SearchPage()
             CreatePinPage(),
+            NotificationPage(),
             ProfileScreen(),
           ],
         ),
