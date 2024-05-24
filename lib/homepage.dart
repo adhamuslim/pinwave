@@ -53,6 +53,9 @@ class _MyHomePageState extends State<MyHomePage> {
             Center(
               child: Text('create page', style: TextStyle(fontSize: 30)),
             ),
+            Center(
+              child: Text('notifikasi', style: TextStyle(fontSize: 30)),
+            ),
             HomePage(),
           ],
         ),
@@ -80,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
-            label : 'search'
+            label : 'Search'
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.add_circle, size: 48),
@@ -88,13 +91,13 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.notifications),
-            label: 'notification', 
+            label: 'Notification', 
           ),
           BottomNavigationBarItem(
             icon: CircleAvatar(
-              backgroundImage: NetworkImage('https://via.placeholder.com/150'),
+              backgroundImage: AssetImage('assets/gambar.jpg'),
             ),
-            label: "profile",
+            label: "Profile",
           )
         ],
       ),
