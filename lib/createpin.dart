@@ -80,9 +80,16 @@ class _CreatePinPageState extends State<CreatePinPage> {
                             children: [
                               Icon(Icons.cloud_upload, size: 50, color: Colors.grey),
                               SizedBox(height: 10),
-                              Text('Choose a file or drag and drop it here'),
+                              Center(
+                                child: Text('Choose a file or drag and drop it here')
+                              ),
                               SizedBox(height: 10),
-                              Text('We recommend using high quality .jpg files less than 20MB or .mp4 files less than 200MB'),
+                              Center(
+                                child: Text('We recommend using high quality .jpg files less than 20MB')
+                              ),
+                              Center(
+                                child: Text('or .mp4 files less than 200MB')
+                              ),
                             ],
                           ),
                         )
@@ -156,7 +163,7 @@ class _CreatePinPageState extends State<CreatePinPage> {
             ],
           ),
         ),
-     ),
+      ),
     );
   }
 }
