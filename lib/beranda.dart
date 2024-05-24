@@ -14,6 +14,7 @@ class PinterestBeranda extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: Beranda(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -23,6 +24,7 @@ class Beranda extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blue,
         title: Text('Beranda'),
       ),
       body: GridView.count(
